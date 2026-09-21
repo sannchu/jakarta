@@ -34,12 +34,11 @@
             <%
                 List<String> tecnologias = (List<String>)request.getAttribute("tecnologias");
                 for (String t: tecnologias){
-
+            %>
+                <option value="<%=t%>"><%=t%></option>
+            <%
                 }
             %>
-            <option value="<%=t%>"><%=t%></option>
-
-            <% } %>
       </select>
 
       <label for="nivel">Tu nivel actual</label>

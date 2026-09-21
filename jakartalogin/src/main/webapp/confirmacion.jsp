@@ -23,8 +23,8 @@
 
     <dl>
       <dt>Email</dt><dd>                    </dd>
-      <dt>Tecnología</dt><dd></dd>
-      <dt>Nivel</dt><dd></dd>
+      <dt>Tecnología</dt><dd>           </dd>
+      <dt>Nivel</dt><dd>            </dd>
     </dl>
 
     <a href="index.html">&larr; Volver al inicio</a>

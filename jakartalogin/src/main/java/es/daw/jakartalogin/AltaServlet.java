@@ -23,6 +23,7 @@ private static final Logger LOGGER = Logger.getLogger(AltaServlet.class.getName(
             List<String> tecnologias = leerFichero("/WEB-INF/datos/tecnologias.txt");
             LOGGER.info(tecnologias.toString());
 
+            request.setAttribute("tecnologias", tecnologias);
             request.getRequestDispatcher("/formulario.jsp").forward(request, response);
 
 
@@ -38,7 +39,21 @@ private static final Logger LOGGER = Logger.getLogger(AltaServlet.class.getName(
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String nombre = request.getParameter("nombre");
+        String email = request.getParameter("email");
+        String tecnologia = request.getParameter("tecnologia");
+        String nivel = request.getParameter("nivel");
 
+
+
+        request.setAttribute("nombre", nombre);
+        request.setAttribute("email", email);
+        request.setAttribute("tecnologia", tecnologia);
+        request.setAttribute("nivel", nivel
+
+        request.getRequestDispatcher()
+
+        );
 
     }
 
