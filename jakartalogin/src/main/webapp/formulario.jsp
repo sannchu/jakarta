@@ -20,7 +20,7 @@
 <body>
   <div class="form-card">
     <h1>Formulario de alta</h1>
-    <form action="alta" method="post">
+    <form action="<%= request.getContextPath() %>/alta" method="post">
 
       <label for="nombre">Nombre</label>
       <input type="text" id="nombre" name="nombre" required>

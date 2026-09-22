@@ -38,22 +38,22 @@ private static final Logger LOGGER = Logger.getLogger(AltaServlet.class.getName(
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        //leer parametros
         String nombre = request.getParameter("nombre");
         String email = request.getParameter("email");
         String tecnologia = request.getParameter("tecnologia");
         String nivel = request.getParameter("nivel");
+
+        //validar parametros
 
 
 
         request.setAttribute("nombre", nombre);
         request.setAttribute("email", email);
         request.setAttribute("tecnologia", tecnologia);
-        request.setAttribute("nivel", nivel
+        request.setAttribute("nivel", nivel);
 
-        request.getRequestDispatcher()
-
-        );
+        request.getRequestDispatcher("/confirmacion.jsp").forward(request, response);
 
     }
 
