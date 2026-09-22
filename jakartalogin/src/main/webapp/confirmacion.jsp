@@ -27,7 +27,7 @@
       <dt>Nivel</dt><dd>${nivel}</dd>
     </dl>
 
-    <a href="index.html">&larr; Volver al inicio</a>
+    <a href="<%= request.getContextPath() %>/index.jsp">&larr; Volver al inicio</a>
   </div>
 </body>
 </html>

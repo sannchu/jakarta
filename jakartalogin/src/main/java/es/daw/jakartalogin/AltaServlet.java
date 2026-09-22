@@ -46,6 +46,8 @@ private static final Logger LOGGER = Logger.getLogger(AltaServlet.class.getName(
 
         //validar parametros
 
+        nombre = nombre == null ? null : nombre.trim();
+        nombre = nombre == null ? null : nombre.trim();
 
 
         request.setAttribute("nombre", nombre);
