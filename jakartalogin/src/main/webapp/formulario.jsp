@@ -25,11 +25,9 @@
     <h1>Formulario de alta</h1>
 
 
-    <c:if test="${not empty mensaje}">
-      <div class="error-msg">
-        <c:out value="${mensaje}"/>
-      </div>
-    </c:if>
+    <% if (request.getAttribute("mensaje") != null) { %>
+      <div class="error-msg"><c:out value="${mensaje}"/></div>
+    <% } %>
 
     <form action="<%= request.getContextPath() %>/alta" method="post">
 
