@@ -26,7 +26,7 @@
     <div class="error-icon">&#9888;</div>
     <h1>Vaya, algo ha fallado</h1>
     <p class="msg">${mensajeError}</p>
-    <a href="index.html">&larr; Volver al inicio</a>
+    <a href="<%= request.getContextPath() %>/index.jsp">&larr; Volver al inicio</a>
 </div>
 </body>
 </html>

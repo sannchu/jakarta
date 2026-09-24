@@ -48,29 +48,31 @@ private static final Logger LOGGER = Logger.getLogger(AltaServlet.class.getName(
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding(StandardCharsets.UTF_8.name());
+
         // Leer todos los parámetros del formulario
-        String nombre = request.getParameter("nombre");
-        String email = request.getParameter("email");
-        String tecnologia = request.getParameter("tecnologia");
-        String nivel = request.getParameter("nivel");
+        String nombre = trim(request.getParameter("nombre"));
+        String email = trim(request.getParameter("email"));
+        String tecnologia = trim(request.getParameter("tecnologia"));
+        String nivel = trim(request.getParameter("nivel"));
 
         LOGGER.info("nombre: "+nombre);
         LOGGER.info(String.format("email: %s",email));
         LOGGER.info(String.format("tecnologia: %s", tecnologia));
         LOGGER.info(String.format("nivel: %s",nivel));
 
-        // Validar los parámetros!!!
-
-        nombre = nombre == null ? null : nombre.trim();
-        email = email == null ? null : email.trim();
-        tecnologia = tecnologia == null ? null : tecnologia.trim();
-        nivel = nivel == null ? null : nivel.trim();
-
-
         request.setAttribute("nombre", nombre);
         request.setAttribute("email", email);
         request.setAttribute("tecnologia", tecnologia);
         request.setAttribute("nivel", nivel);
+
+        String mensaje = validar(nombre, email, tecnologia, nivel);
+        if (mensaje != null) {
+            request.setAttribute("mensaje", mensaje);
+            request.setAttribute("tecnologias", leerFichero("/WEB-INF/datos/tecnologias.txt"));
+            request.getRequestDispatcher("/formulario.jsp").forward(request, response);
+            return;
+        }
 
         request.getRequestDispatcher("/confirmacion.jsp").forward(request, response);
 
@@ -96,6 +98,26 @@ private static final Logger LOGGER = Logger.getLogger(AltaServlet.class.getName(
         }
         return lista;
 
+    }
+
+    private String trim(String valor) {
+        return valor == null ? null : valor.trim();
+    }
+
+    private String validar(String nombre, String email, String tecnologia, String nivel) {
+        if (nombre == null || nombre.isBlank()) {
+            return "El nombre no puede estar vacío.";
+        }
+        if (email == null || email.isBlank()) {
+            return "El email es obligatorio.";
+        }
+        if (tecnologia == null || tecnologia.isBlank()) {
+            return "Debes seleccionar una tecnología.";
+        }
+        if (nivel == null || nivel.isBlank()) {
+            return "Debes seleccionar tu nivel actual.";
+        }
+        return null;
     }
 
 
