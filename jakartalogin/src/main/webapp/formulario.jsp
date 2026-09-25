@@ -59,9 +59,11 @@
 
       <label for="nivel">Tu nivel actual</label>
       <select id="nivel" name="nivel">
-        <option value="Principiante" <c:if test="${empty nivel or nivel eq 'Principiante'}">selected</c:if>>Principiante</option>
-        <option value="Intermedio" <c:if test="${nivel eq 'Intermedio'}">selected</c:if>>Intermedio</option>
-        <option value="Avanzado" <c:if test="${nivel eq 'Avanzado'}">selected</c:if>>Avanzado</option>
+        <c:forEach var="n" items="${niveles}">
+          <option value="${fn:escapeXml(n)}" <c:if test="${n eq nivel or (empty nivel and n eq niveles[0])}">selected</c:if>>
+            <c:out value="${n}"/>
+          </option>
+        </c:forEach>
       </select>
 
       <button type="submit">Enviar</button>
