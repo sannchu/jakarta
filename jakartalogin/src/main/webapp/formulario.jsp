@@ -25,6 +25,7 @@
     <h1>Formulario de alta</h1>
 
 
+    <!-- Si el nombre está vacío, se muestra un mensaje de error. -->
     <% if (request.getAttribute("mensaje") != null) { %>
       <div class="error-msg"><c:out value="${mensaje}"/></div>
     <% } %>
@@ -32,6 +33,7 @@
     <form action="<%= request.getContextPath() %>/alta" method="post">
 
       <label for="nombre">Nombre</label>
+      <!--<input type="text" id="nombre" name="nombre" required>-->
       <input type="text" id="nombre" name="nombre" value="${fn:escapeXml(nombre)}">
 
       <label for="email">Email</label>
@@ -39,6 +41,15 @@
 
       <label for="tecnologia">Tecnología con la que más te gustaría trabajar</label>
       <select id="tecnologia" name="tecnologia">
+<%--      <%--%>
+<%--        List<String> tecnologias = (List<String>) request.getAttribute("tecnologias");--%>
+<%--        String tecnologiaSeleccionada = (String) request.getAttribute("tecnologia");--%>
+<%--        for (String t : tecnologias) {--%>
+<%--      %>--%>
+<%--      <option value="<%= t %>" <%= t.equals(tecnologiaSeleccionada) ? "selected" : "" %>><%= t %></option>--%>
+<%--      <%--%>
+<%--        }--%>
+<%--      %>--%>
         <c:forEach var="t" items="${tecnologias}">
           <option value="${fn:escapeXml(t)}" <c:if test="${t eq tecnologia}">selected</c:if>>
             <c:out value="${t}"/>

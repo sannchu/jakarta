@@ -40,9 +40,11 @@
     </style>
 </head>
 <body>
+<!-- comentario html <br> -->
 <div class="card">
     <h1>¿Quieres darte de alta en la aplicación?</h1>
     <p>Regístrate en unos segundos y cuéntanos qué tecnología te interesa más.</p>
+    <%--    <a class="boton" href="${pageContext.request.contextPath}/alta">Darme de alta</a>--%>
     <a class="boton" href="<%= request.getContextPath() %>/alta">Darme de alta</a>
 </div>
 </body>
