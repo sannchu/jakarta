@@ -58,9 +58,10 @@
       </select>
 
       <label for="nivel">Tu nivel actual</label>
-      <select id="nivel" name="nivel">
+      <select id="nivel" name="nivel" multiple>
+        <c:set var="nivelesSeleccionadosCsv" value="${empty nivelesSeleccionados ? '' : fn:join(nivelesSeleccionados, ',')}" />
         <c:forEach var="n" items="${niveles}">
-          <option value="${fn:escapeXml(n)}" <c:if test="${n eq nivel or (empty nivel and n eq niveles[0])}">selected</c:if>>
+          <option value="${fn:escapeXml(n)}" <c:if test="${fn:contains(nivelesSeleccionadosCsv, n)}">selected</c:if>>
             <c:out value="${n}"/>
           </option>
         </c:forEach>

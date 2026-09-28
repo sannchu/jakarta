@@ -1,6 +1,6 @@
 package es.daw.jakartalogin;
 
-import es.daw.jakartalogin.exception.FicheroTxtNoEncontradoException;
+import es.daw.jakartalogin.exception.FicheroTxtParaLasListasNoEncontradoException;
 import es.daw.jakartalogin.util.FileUtil;
 
 import java.io.IOException;
@@ -28,7 +28,7 @@ public class AltaServlet extends HttpServlet {
         try {
             tecnologias = FileUtil.leerFichero(getServletContext(), "/WEB-INF/datos/tecnologias.txt");
             niveles = FileUtil.leerFichero(getServletContext(), "/WEB-INF/datos/niveles.txt");
-        } catch (IOException | FicheroTxtNoEncontradoException e) {
+        } catch (IOException | FicheroTxtParaLasListasNoEncontradoException e) {
             LOGGER.severe(e.getMessage());
             throw new ServletException("No se han podido cargar las listas del formulario", e);
         }
@@ -52,24 +52,30 @@ public class AltaServlet extends HttpServlet {
         String nombre = request.getParameter("nombre");
         String email = request.getParameter("email");
         String tecnologia = request.getParameter("tecnologia");
-        String nivel = request.getParameter("nivel");
+        String[] nivelesSeleccionados = request.getParameterValues("nivel");
 
         LOGGER.info("nombre: "+nombre);
         LOGGER.info(String.format("email: %s",email));
         LOGGER.info(String.format("tecnologia: %s",tecnologia));
-        LOGGER.info(String.format("nivel: %s",nivel));
+        LOGGER.info(String.format("niveles: %s", nivelesSeleccionados == null ? "[]" : String.join(", ", nivelesSeleccionados)));
 
         // 2. VALIDACIONES
         // Validar los parámetros!!!
-        nombre = nombre.strip();
+        nombre = nombre == null ? "" : nombre.strip();
 
         // Realmente los campos del formulario si no se rellenan llegan como cadena vacía y no como null
         email = email == null ? null : email.trim();
         tecnologia = tecnologia == null ? null : tecnologia.trim();
-        nivel = nivel == null ? null : nivel.trim();
+        if (nivelesSeleccionados != null) {
+            for (int i = 0; i < nivelesSeleccionados.length; i++) {
+                nivelesSeleccionados[i] = nivelesSeleccionados[i].trim();
+            }
+        }
 
         request.setAttribute("tecnologia", tecnologia);
-        request.setAttribute("nivel", nivel);
+        request.setAttribute("nivelesSeleccionados", nivelesSeleccionados);
+        request.setAttribute("nombre", nombre);
+        request.setAttribute("email", email);
 
         // Si el nombre viene vacío que vuelva a la página del formulario indicando que
         // el nombre no puede estar vacío...
@@ -95,7 +101,7 @@ public class AltaServlet extends HttpServlet {
         request.setAttribute("nombre",nombre);
         request.setAttribute("email",email);
         request.setAttribute("tecnologia",tecnologia);
-        request.setAttribute("nivel",nivel);
+        request.setAttribute("nivel", nivelesSeleccionados == null ? "" : String.join(", ", nivelesSeleccionados));
 
         // Pendiente llamar a la página confirmacion.jsp
 
