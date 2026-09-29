@@ -50,7 +50,7 @@
     <a href="${pageContext.request.contextPath}/personajes">Limpiar filtros</a>
 </form>
 
-<p class="resumen"><strong><c:out value="${total}" /></strong> personajes encontrados</p>
+<p class="resumen"><strong>${personajes.size()}</strong> personajes encontrados</p>
 
 <c:choose>
     <c:when test="${empty personajes}">
@@ -67,14 +67,13 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="personaje" items="${personajes}">
-                <tr class="${personaje.menor ? 'menor' : ''}">
-                    <td><c:out value="${personaje.nombreCompleto}" /></td>
+            <c:forEach var="p" items="${personajes}">
+                <tr>
+                    <td><c:out value="${personaje.nombre}" /></td>
                     <td><c:out value="${personaje.edad}" /></td>
                     <td><c:out value="${personaje.ocupacion}" /></td>
                     <td><c:out value="${personaje.lugar}" /></td>
                 </tr>
-            </c:forEach>
             </tbody>
         </table>
     </c:otherwise>

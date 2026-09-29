@@ -2,10 +2,14 @@ package es.daw.simpsons.repository;
 
 import es.daw.simpsons.model.Personaje;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /** Datos iniciales de Springfield guardados en memoria. */
-public class PersonajeRepositorio {
+public class PersonajeRepository {
+
+
+
     private static final List<Personaje> PERSONAJES = List.of(
             new Personaje("Homer", "Simpson", 39, "Inspector de seguridad", "Central Nuclear", true),
             new Personaje("Marge", "Simpson", 36, "Ama de casa", "Casa Simpson", true),
