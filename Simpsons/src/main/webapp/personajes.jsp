@@ -69,11 +69,12 @@
             <tbody>
             <c:forEach var="p" items="${personajes}">
                 <tr>
-                    <td><c:out value="${personaje.nombre}" /></td>
-                    <td><c:out value="${personaje.edad}" /></td>
-                    <td><c:out value="${personaje.ocupacion}" /></td>
-                    <td><c:out value="${personaje.lugar}" /></td>
+                    <td><c:out value="${p.nombreCompleto}" /></td>
+                    <td><c:out value="${p.edad}" /></td>
+                    <td><c:out value="${p.ocupacion}" /></td>
+                    <td><c:out value="${p.lugar}" /></td>
                 </tr>
+            </c:forEach>
             </tbody>
         </table>
     </c:otherwise>
