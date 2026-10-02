@@ -2,7 +2,6 @@ package es.daw.simpsons.repository;
 
 import es.daw.simpsons.model.Personaje;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /** Datos iniciales de Springfield guardados en memoria. */
@@ -45,5 +44,13 @@ public class PersonajeRepository {
 
     public List<Personaje> findAll() {
         return PERSONAJES;
+    }
+
+    public List<String> findLugares() {
+        return PERSONAJES.stream()
+                .map(Personaje::lugar)
+                .distinct()
+                .sorted(String.CASE_INSENSITIVE_ORDER)
+                .toList();
     }
 }

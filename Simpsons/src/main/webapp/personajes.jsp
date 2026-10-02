@@ -8,11 +8,16 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilos.css">
 </head>
 <body>
-<h1>Personajes de Springfield</h1>
+<header class="cabecera">
+    <p class="marca">Guía de Springfield</p>
+    <h1>Personajes de Springfield</h1>
+    <p class="intro">Vecinos, trabajos y rincones de la ciudad. Busca a tu personaje favorito.</p>
+</header>
 
 <form action="${pageContext.request.contextPath}/personajes" method="get">
     <fieldset>
         <legend>Filtrar</legend>
+
         <label>Lugar
             <select name="lugar">
                 <option value="">— Todos —</option>
@@ -23,6 +28,7 @@
                 </c:forEach>
             </select>
         </label>
+
         <label>Edad máxima
             <input type="number" name="edadMax" min="0" value="${edadMax}">
         </label>
@@ -49,6 +55,10 @@
     <button type="submit">Buscar</button>
     <a href="${pageContext.request.contextPath}/personajes">Limpiar filtros</a>
 </form>
+
+<c:if test="${not empty error}">
+    <p class="error"><c:out value="${error}" /></p>
+</c:if>
 
 <p class="resumen"><strong>${personajes.size()}</strong> personajes encontrados</p>
 
